@@ -1,0 +1,170 @@
+/* Reset y Estilos Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent; /* Evita highlight azul en móviles */
+}
+
+html, body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
+    color: #f0f0f0;
+    transition: background 1.5s ease-in-out; /* Transición de fondo más suave */
+    overscroll-behavior: none; /* Evita "pull-to-refresh" */
+}
+
+/* Clases de Nivel para Fondos Gradientes */
+body.level-1 { background: linear-gradient(to bottom, #00000c, #0b001a); }
+body.level-2 { background: linear-gradient(to bottom, #0a1028, #1a2a4d); }
+body.level-3 { background: linear-gradient(to bottom, #2a003a, #4d0f6f, #1a002a); }
+body.level-transition { background: #ffffff; transition: background 0.2s ease-out; } /* Flash blanco */
+body.level-final { background: linear-gradient(to bottom, #1a001a, #3a003a); }
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Mensajes Flotantes Mejorados */
+.message {
+    position: absolute;
+    top: 15%; /* Un poco más arriba */
+    left: 50%;
+    transform: translate(-50%, -20px); /* Empieza ligeramente arriba */
+    padding: 18px 35px;
+    background: rgba(10, 0, 20, 0.75); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(5px); /* Efecto vidrio esmerilado (si el navegador soporta) */
+    border-radius: 50px; /* Más redondeado */
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    color: #e8d8ff; /* Tono lavanda claro */
+    text-shadow: 0 0 12px rgba(230, 200, 255, 0.8);
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Animación suave */
+    pointer-events: none;
+    text-align: center;
+    z-index: 10;
+    max-width: 90%;
+}
+
+.message.visible {
+    opacity: 1;
+    transform: translate(-50%, 0); /* Baja a su posición */
+}
+
+/* Pantallas de Inicio y Final Mejoradas */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 0s linear 1.2s;
+    z-index: 20;
+    padding: 30px;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1.2s ease-in-out;
+}
+
+/* Pantalla de Inicio */
+#start-screen h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    margin-bottom: 25px;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 0 15px #ff80ff, 0 0 25px #80ffff, 0 0 35px #ffffff; /* Neón más vibrante */
+    animation: soft-glow 3s infinite alternate ease-in-out;
+}
+
+#start-screen p {
+     font-size: clamp(1.1rem, 4vw, 1.5rem);
+     color: #ccc;
+     margin-top: 10px;
+}
+#start-screen .instructions {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-top: 40px;
+    color: #999;
+}
+
+/* Pantalla Final */
+#final-screen {
+    background: rgba(10, 0, 20, 0.95); /* Fondo final un poco más temático */
+}
+
+#final-screen h2 {
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 35px #ff80ff, 0 0 50px #ff80ff, 0 0 70px #ff80ff;
+    animation: final-glow 2.5s infinite alternate ease-in-out;
+    letter-spacing: 2px; /* Añade espacio entre letras */
+}
+
+#final-screen p {
+    font-size: clamp(1.1rem, 4.2vw, 1.6rem);
+    margin-bottom: 30px;
+    color: #e0e0e0;
+    max-width: 85%;
+    line-height: 1.5;
+}
+#final-screen .dedication {
+    font-style: italic;
+    color: #f0c0ff; /* Un rosa/lavanda más brillante */
+    margin-top: 15px;
+    font-size: clamp(1rem, 3.8vw, 1.4rem);
+}
+
+#restart-button {
+    padding: 15px 35px;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    background: linear-gradient(45deg, #b721ff, #21d4fd); /* Gradiente llamativo */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 20px rgba(183, 33, 255, 0.5), 0 2px 10px rgba(33, 212, 253, 0.4);
+    margin-top: 20px;
+}
+
+#restart-button:hover, #restart-button:active {
+    transform: scale(1.08); /* Efecto de "presión" más notorio */
+    box-shadow: 0 8px 30px rgba(183, 33, 255, 0.7), 0 4px 15px rgba(33, 212, 253, 0.6);
+}
+
+/* Animaciones de Brillo */
+@keyframes soft-glow {
+  from { text-shadow: 0 0 10px #ff80ff, 0 0 20px #80ffff, 0 0 30px #ffffff; }
+  to   { text-shadow: 0 0 20px #ff80ff, 0 0 30px #80ffff, 0 0 45px #ffffff, 0 0 5px #ffffff; }
+}
+
+@keyframes final-glow {
+   from { text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 30px #ff80ff, 0 0 45px #ff80ff, 0 0 60px #ff80ff; }
+  to   { text-shadow: 0 0 12px #fff, 0 0 24px #fff, 0 0 40px #ff80ff, 0 0 60px #ff80ff, 0 0 80px #ff80ff, 0 0 10px #fff; }
+}
