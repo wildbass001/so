@@ -1,46 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <!-- Crucial para experiencia móvil óptima -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>El Viaje de los Sueños ✨</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Asegurar pantalla completa y sin barras de scroll */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000; /* Fondo inicial muy oscuro */
-            position: fixed; /* Evita scroll en iOS */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Viaje de los Sueños</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body id="body-container"> <!-- Añadido ID para aplicar clases de nivel -->
-    <div id="game-container">
-        <canvas id="game-canvas"></canvas>
-        <div id="message-overlay" class="message"></div>
-        <div id="start-screen" class="screen active"> <!-- Empieza activo -->
-            <h1>El Viaje<br>de los Sueños</h1>
-            <p>Toca o desliza suavemente para comenzar...</p>
-            <!-- <p class="instructions">(Sonidos sutiles pueden acompañar tu toque)</p> -->
-        </div>
-        <div id="final-screen" class="screen">
-            <h2 id="final-message-name"></h2>
-            <p id="final-message-text"></p>
-            <p class="dedication">Siempre hay magia esperando ser descubierta.</p>
-            <button id="restart-button">Iniciar un nuevo sueño</button>
-        </div>
-    </div>
-
-    <!-- Sonido de Interacción Opcional (Descomentar si tienes el archivo) -->
-    <!-- <audio id="interaction-sound" src="sounds/subtle_sparkle.wav" preload="auto"></audio> -->
-
-    <script src="script.js"></script>
+<body>
+  <div id="game-container">
+    <canvas id="canvas"></canvas>
+    <div id="message-box"></div>
+    <audio id="touch-sound" src="sonido.mp3" preload="auto"></audio>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
